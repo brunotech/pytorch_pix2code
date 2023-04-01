@@ -19,10 +19,9 @@ class Node:
             child.show()
 
     def render(self, mapping, rendering_function=None):
-        content = ""
-        for child in self.children:
-            content += child.render(mapping, rendering_function)
-
+        content = "".join(
+            child.render(mapping, rendering_function) for child in self.children
+        )
         value = mapping[self.key]
         if rendering_function is not None:
             value = rendering_function(self.key, value)

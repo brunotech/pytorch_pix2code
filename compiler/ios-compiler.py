@@ -34,7 +34,7 @@ def render_content_with_text(key, value):
 file_uid = basename(input_file)[:basename(input_file).find(".")]
 path = input_file[:input_file.find(file_uid)]
 
-input_file_path = "{}{}.gui".format(path, file_uid)
-output_file_path = "{}{}.storyboard".format(path, file_uid)
+input_file_path = f"{path}{file_uid}.gui"
+output_file_path = f"{path}{file_uid}.storyboard"
 
 compiler.compile(input_file_path, output_file_path, rendering_function=render_content_with_text)

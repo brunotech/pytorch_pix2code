@@ -14,7 +14,7 @@ paths = []
 for f in os.listdir(input_path):
     if f.find('.gui') != -1:
         file_name = f[:f.find('.gui')]
-        if os.path.isfile('{}/{}.png'.format(input_path, file_name)):
+        if os.path.isfile(f'{input_path}/{file_name}.png'):
             paths.append(file_name)
 
 # Split the data in training and evaluation set
@@ -24,9 +24,21 @@ eval_set = paths[:eval_sample_number]
 train_set = paths[eval_sample_number:]
 
 for path in eval_set:
-    copyfile('{}/{}.png'.format(input_path, path), '{}/{}/{}.png'.format(os.path.dirname(output_path), 'evaluation', path))
-    copyfile('{}/{}.gui'.format(input_path, path), '{}/{}/{}.gui'.format(os.path.dirname(output_path), 'evaluation', path))
+    copyfile(
+        f'{input_path}/{path}.png',
+        f'{os.path.dirname(output_path)}/evaluation/{path}.png',
+    )
+    copyfile(
+        f'{input_path}/{path}.gui',
+        f'{os.path.dirname(output_path)}/evaluation/{path}.gui',
+    )
 
 for path in train_set:
-    copyfile('{}/{}.png'.format(input_path, path), '{}/{}/{}.png'.format(os.path.dirname(output_path), 'training', path))
-    copyfile('{}/{}.gui'.format(input_path, path), '{}/{}/{}.gui'.format(os.path.dirname(output_path), 'training', path))
+    copyfile(
+        f'{input_path}/{path}.png',
+        f'{os.path.dirname(output_path)}/training/{path}.png',
+    )
+    copyfile(
+        f'{input_path}/{path}.gui',
+        f'{os.path.dirname(output_path)}/training/{path}.gui',
+    )

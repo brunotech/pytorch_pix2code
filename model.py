@@ -94,5 +94,4 @@ class Pix2Code(nn.Module):
     def forward(self, image, context):
         image_feature = self.image_encoder(image)
         context_feature = self.context_encoder(context)
-        output = self.decoder(image_feature, context_feature)
-        return output
+        return self.decoder(image_feature, context_feature)
